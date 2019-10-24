@@ -8,11 +8,13 @@ import { NgxModalModule } from '@ngx-lite/modal';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { FormSearchComponent } from './components/form-search/form-search.component';
+import { FormEntryComponent } from './components/form-entry/form-entry.component';
 
 const components = [
   HeaderComponent,
   FooterComponent,
-  FormSearchComponent
+  FormSearchComponent,
+  FormEntryComponent
 ];
 
 const modules = [
