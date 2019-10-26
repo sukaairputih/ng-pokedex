@@ -9,15 +9,17 @@ import { Subscription } from 'rxjs';
 })
 export class FormEntryComponent implements OnInit, OnDestroy {
   @Output() formChange = new EventEmitter<string>();
-  entryForm: FormGroup;
+  enterFormPokemon: FormGroup;
   subscriptions: Subscription[];
+  message : string;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    // this.entryForm = this.formBuilder.group({
-    //   entry: ['']
-    // });
+    this.enterFormPokemon = this.formBuilder.group({
+      entername: [''],
+      enterage: ['']
+    });
 
     // this.subscriptions = [
     //   this.entryForm.controls.entry.valueChanges.subscribe(value => this.formChange.emit(value))
@@ -26,5 +28,10 @@ export class FormEntryComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     // this.subscriptions.forEach(s => s.unsubscribe());
+  }
+
+  onSubmit( pokemondata ) { 
+    // this.submitted = true;
+    console.log("test tets " + pokemondata.entername + ' - ' + pokemondata.enterage);
   }
 }
