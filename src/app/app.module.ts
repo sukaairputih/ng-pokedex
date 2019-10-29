@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { SharedModule } from './common/shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +19,8 @@ import { AppComponent } from './app.component';
     }),
     HttpClientModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]
