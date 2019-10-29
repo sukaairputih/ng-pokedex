@@ -18,20 +18,40 @@ export class FormEntryComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.enterFormPokemon = this.formBuilder.group({
       entername: [''],
-      enterage: ['']
+      enterage: [''],
+      enterweight: [''],
+      enterheight: ['']
     });
-
-    // this.subscriptions = [
-    //   this.entryForm.controls.entry.valueChanges.subscribe(value => this.formChange.emit(value))
-    // ];
   }
 
   ngOnDestroy() {
     // this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  onSubmit( pokemondata ) { 
-    // this.submitted = true;
-    console.log("test tets " + pokemondata.entername + ' - ' + pokemondata.enterage);
+  onSubmit( value : any ) { 
+    this.checkNumber( value.enterheight );
+    this.checkNumber( value.enterweight );
+    this.checkValidate( value );
+  }
+
+  public checkNumber(number: any) {
+    let number_ = number;
+
+    var regexNumber = /^\d+$/;
+
+    if(number_.match(regexNumber)){
+      console.log("this nmber: " + number_);
+    } else {
+      console.log("this not nmber: " + number_);
+    }
+  }
+
+  public checkValidate(value : any){
+    // console.log("val: " + value + ' -- '+ this.enterFormPokemon.valid);
+    if(this.enterFormPokemon.valid){
+      this.enterFormPokemon.reset();
+    } else {
+      //TODO show pop up
+    }
   }
 }
