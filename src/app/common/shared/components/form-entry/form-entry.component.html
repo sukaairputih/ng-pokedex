@@ -1,21 +1,28 @@
 <div class="pokemon-entry-form">
     <form #submitPokemon="ngForm" (ngSubmit)="onSubmit(submitPokemon.value)" [formGroup]="enterFormPokemon" class="input">
-        <div class="col-xl-6">
-            <input type="text" aria-label="Entry Name" 
-                    placeholder="Entry Name" formControlName="entername" />
-            <input type="text" aria-label="Entry Age" 
-                    placeholder="Entry Age" formControlName="enterage" />
-        </div>
+        <div class="row">
+            <div class="col-xl-6">
+                <input type="text" aria-label="Entry Name" 
+                        placeholder="Entry Name" formControlName="entername" />
+                <input type="text" aria-label="Entry Age" 
+                        placeholder="Entry Age" formControlName="enterage" />
+            </div>
             <!-- TODO height and weight as double slider -->
-        <div class="col-xl-6">
-            <input type="text" aria-label="Entry Weight" 
-                    placeholder="Entry Weight" formControlName="enterweight" />
-            <input type="text" aria-label="Entry Height" 
-                    placeholder="Entry Height" formControlName="enterheight" />
+            <div class="col-xl-6">
+                <input type="text" aria-label="Entry Weight" 
+                        placeholder="Entry Weight" formControlName="enterweight" />
+                <input type="text" aria-label="Entry Height" 
+                        placeholder="Entry Height" formControlName="enterheight" />
+            </div>
         </div>
-            <!-- TODO Input must be placed on the right bottom from website -->
-        <div class="pokemon-align-right">
-            <button type="submit" class="btn btn-success">Submit</button>
+        <!-- TODO Input must be placed on the right bottom from website -->
+        <!-- TODO put box for upload picture -->
+        <div class="row">
+            <div class="col-auto">
+                <div class="pokemon-align-right">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </div>
         </div>
     </form>
 </div>
