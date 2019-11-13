@@ -31,27 +31,52 @@ export class FormEntryComponent implements OnInit, OnDestroy {
   onSubmit( value : any ) { 
     this.checkNumber( value.enterheight );
     this.checkNumber( value.enterweight );
+    
     this.checkValidate( value );
   }
 
+  //TODO change to array
   public checkNumber(number: any) {
-    let number_ = number;
+    let self_number = number;
+    let valuesPokemon: any[] = [];
 
     var regexNumber = /^\d+$/;
 
-    if(number_.match(regexNumber)){
-      console.log("this nmber: " + number_);
-    } else {
-      console.log("this not nmber: " + number_);
-    }
+    valuesPokemon.push(self_number);
+    console.log("length: " + valuesPokemon.length);
+
+    valuesPokemon.forEach(function (value){
+      console.log("within ar: " + value);
+
+      if(self_number.match(regexNumber)){
+        console.log("this nmber: " + self_number);
+      } else {
+        console.log("this not nmber: " + self_number);
+      }
+    });
+
+    
+
+    // if(self_number.match(regexNumber)){
+    //   console.log("this nmber: " + self_number);
+    //   //valuesPokemon.push(self_number);
+    //   //this.passValueToModal(valuesPokemon);
+    // } else {
+    //   console.log("this not nmber: " + self_number);
+    // }
   }
 
   public checkValidate(value : any){
-    // console.log("val: " + value + ' -- '+ this.enterFormPokemon.valid);
     if(this.enterFormPokemon.valid){
       this.enterFormPokemon.reset();
     } else {
       //TODO show pop up
     }
+  }
+
+  public passValueToModal(...args: any[]){
+
+    console.log("test passValueToModal -> " + args.length);
+
   }
 }
