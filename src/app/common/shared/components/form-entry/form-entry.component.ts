@@ -2,6 +2,8 @@ import { Component, EventEmitter, OnInit, OnDestroy, Output } from '@angular/cor
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
+import { FormEntryService } from './form-entry.service';
+
 @Component({
   selector: 'app-form-entry',
   templateUrl: './form-entry.component.html',
@@ -13,7 +15,15 @@ export class FormEntryComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[];
   message : string;
 
-  constructor(private formBuilder: FormBuilder) { }
+  @Output() 
+  weight: string;
+
+  @Output()
+  pokemonValues: any[];
+
+  latestData: any;
+
+  constructor(private formBuilder: FormBuilder, private formDataService: FormEntryService) { }
 
   ngOnInit() {
     this.enterFormPokemon = this.formBuilder.group({
@@ -22,6 +32,10 @@ export class FormEntryComponent implements OnInit, OnDestroy {
       enterweight: [''],
       enterheight: ['']
     });
+
+    this.formDataService.dataUpdated.subscribe((data) => {
+      this.latestData = data;
+    })
   }
 
   ngOnDestroy() {
@@ -31,8 +45,9 @@ export class FormEntryComponent implements OnInit, OnDestroy {
   onSubmit( value : any ) { 
     this.checkNumber( value.enterheight );
     this.checkNumber( value.enterweight );
-    
-    this.checkValidate( value );
+    // this.checkValues( value );
+    this.checkValidate( );
+    this.weight = value.enterweight;
   }
 
   //TODO change to array
@@ -43,30 +58,20 @@ export class FormEntryComponent implements OnInit, OnDestroy {
     var regexNumber = /^\d+$/;
 
     valuesPokemon.push(self_number);
-    console.log("length: " + valuesPokemon.length);
 
     valuesPokemon.forEach(function (value){
-      console.log("within ar: " + value);
+      // console.log("within ar: " + value);
 
       if(self_number.match(regexNumber)){
         console.log("this nmber: " + self_number);
+        // this.weight = value;
       } else {
-        console.log("this not nmber: " + self_number);
+        // console.log("this not nmber: " + self_number);
       }
     });
-
-    
-
-    // if(self_number.match(regexNumber)){
-    //   console.log("this nmber: " + self_number);
-    //   //valuesPokemon.push(self_number);
-    //   //this.passValueToModal(valuesPokemon);
-    // } else {
-    //   console.log("this not nmber: " + self_number);
-    // }
   }
 
-  public checkValidate(value : any){
+  public checkValidate(){
     if(this.enterFormPokemon.valid){
       this.enterFormPokemon.reset();
     } else {
