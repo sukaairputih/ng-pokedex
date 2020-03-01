@@ -15,9 +15,13 @@ export class FormEntryComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[];
   message : string;
 
-  @Output() 
-  weight: string;
 
+  @Output() 
+  name: string;
+  @Output() 
+  weight: number;
+  @Output()
+  age: number;
   @Output()
   pokemonValues: any[];
 
@@ -47,6 +51,8 @@ export class FormEntryComponent implements OnInit, OnDestroy {
     this.checkNumber( value.enterweight );
     // this.checkValues( value );
     this.checkValidate( );
+    this.name = value.entername;
+    this.age = value.enterage;
     this.weight = value.enterweight;
   }
 
