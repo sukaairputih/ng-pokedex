@@ -1,8 +1,9 @@
-import { Component, EventEmitter, OnInit, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, OnDestroy, Output, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { FormEntryService } from './form-entry.service';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 
 @Component({
   selector: 'app-form-entry',
@@ -15,6 +16,8 @@ export class FormEntryComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[];
   message : string;
 
+  public submitted: boolean = false;
+  @ViewChild('pokemonModal', {static: false}) pokemonModal:ElementRef;
 
   @Output() 
   name: string;
@@ -27,7 +30,9 @@ export class FormEntryComponent implements OnInit, OnDestroy {
 
   latestData: any;
 
-  constructor(private formBuilder: FormBuilder, private formDataService: FormEntryService) { }
+  constructor(private formBuilder: FormBuilder, 
+              private formDataService: FormEntryService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.enterFormPokemon = this.formBuilder.group({
@@ -49,11 +54,12 @@ export class FormEntryComponent implements OnInit, OnDestroy {
   onSubmit( value : any ) { 
     this.checkNumber( value.enterheight );
     this.checkNumber( value.enterweight );
-    // this.checkValues( value );
     this.checkValidate( );
     this.name = value.entername;
     this.age = value.enterage;
     this.weight = value.enterweight;
+
+    this.submitted = true;
   }
 
   //TODO change to array
@@ -86,8 +92,13 @@ export class FormEntryComponent implements OnInit, OnDestroy {
   }
 
   public passValueToModal(...args: any[]){
-
     console.log("test passValueToModal -> " + args.length);
+  }
 
+  public showPopUpModal(modal: any){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    // this.dialog.open(CourseDialogComponent, dialogConfig);
   }
 }

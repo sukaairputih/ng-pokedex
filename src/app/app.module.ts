@@ -5,13 +5,15 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatDialogModule } from "@angular/material";
 
 import { SharedModule } from './common/shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent],
   imports: [
     BrowserModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
@@ -20,7 +22,8 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     SharedModule,
     AppRoutingModule,
-    NgbModalModule
+    NgbModalModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
