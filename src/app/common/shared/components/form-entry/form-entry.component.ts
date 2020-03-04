@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { FormEntryService } from './form-entry.service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
+import { DialogComponent } from '../dialog/dialog.component';
+
 @Component({
   selector: 'app-form-entry',
   templateUrl: './form-entry.component.html',
@@ -99,6 +101,17 @@ export class FormEntryComponent implements OnInit, OnDestroy {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    // this.dialog.open(CourseDialogComponent, dialogConfig);
+
+    dialogConfig.data = {
+      id: 1,
+      title: 'Angular For Beginners'
+    };
+
+
+    const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+        data => console.log("Dialog output:", data)
+    ); 
   }
 }

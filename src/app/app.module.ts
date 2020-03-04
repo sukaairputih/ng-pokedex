@@ -7,13 +7,14 @@ import { environment } from '../environments/environment';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialogModule } from "@angular/material";
 
+import { DialogComponent } from '../app/common/shared/components/dialog/dialog.component';
 import { SharedModule } from './common/shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent],
+    AppComponent, DialogComponent],
   imports: [
     BrowserModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
